@@ -1,0 +1,223 @@
+:root{
+    --primary: #764134;   /* brand / navbar */
+    --accent: #AD8350;    /* accent / emphasis */
+    --bg-color: #FFFFFF;  /* page background */
+    --text-dark: #000000; /* primary text */
+    --text-light: #764134;/* secondary text */
+    --white: #FFFFFF;
+    --neutral: #C9CBCF;   /* borders / subtle surfaces */
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --radius: 8px;
+}
+
+/*global smooth scrolling*/
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar{
+    background: linear-gradient(135deg, var(--primary), rgba(118, 65, 52, 0.95));
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-bottom: var(--accent) 4px solid;
+}
+
+.logo{
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 0.5px;
+    color: var(--accent);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.logo::before{
+    content: '\f518';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1.5rem;
+    display: inline-block;
+    animation: bounce 1.5s ease-in-out infinite;
+    color: var(--accent);
+}
+
+.logo:hover{
+    filter: drop-shadow(0 4px 8px rgba(173, 131, 80, 0.4));
+    transform: scale(1.05);
+}
+
+@keyframes bounce{
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-3px) scale(1.01);
+    }
+}
+
+#navmenu{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+#navmenu a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    transition: background-color 0.3s, transform 0.2s;
+    position: relative;
+}
+
+#navmenu a:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+#navmenu a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+#navmenu a:hover::after {
+    width: 100%;
+}
+
+#menubutton{
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 101;
+}
+
+.hamburger-line {
+    display:block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/*hamburger animation*/
+
+#menubutton.active .hamburger-line:nth-child(1)
+{
+    transform: translateY(8px) rotate(45deg);
+}
+
+#menubutton.active .hamburger-line:nth-child(2) 
+{
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+#menubutton.active .hamburger-line:nth-child(3) 
+{
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+#menubutton:hover .hamburger-line 
+{
+    background-color: var(--accent);
+}
+
+/* Responsive navbar */
+@media (min-width: 769px){
+    #navmenu{
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        width: auto;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    #menubutton{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    .navbar{
+        padding: 1rem;
+    }
+
+    .logo{
+        font-size: 1.2rem;
+    }
+
+    #menubutton{
+        display: block;
+    }
+
+    #navmenu{
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: var(--primary);
+        width: 100%;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+        gap: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        animation: slideDown 0.3s ease-in-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #navmenu.show{
+        display: flex;
+    }
+
+    #navmenu a{
+        padding: 0.8rem;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    #navmenu a::after{
+        display: none;
+    }
+}

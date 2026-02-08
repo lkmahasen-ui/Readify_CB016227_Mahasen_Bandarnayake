@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="Readify Feedback - Share your thoughts and suggestions to help us improve your reading experience.">
+<meta name="keywords" content="feedback, contact, support, help">
+<meta name="author" content="Readify">
+
+<title>Feedback - Readify</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/feedback.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/loading.css">
+
+<!--Favicons-->
+
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Readify">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+</head>
+<body>
+    <div class="page-loader active">
+        <div class="spinner">
+            <i class="fas fa-book-open"></i>
+        </div>
+    </div>
+<header class="navbar">
+    <a href="index.html" style="text-decoration: none;"><h1 class="logo">Readify</h1></a>
+    <button id="menubutton" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <nav id="navmenu">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Book Explorer</a>
+        <a href="progress.html">Reading Progress</a>
+        <a href="recommender.html">Book Recommender</a>
+        <a href="flow.html">Reading Flow</a>
+        <a href="feedback.html">Feedback</a>
+    </nav>
+</header>
+
+<div class="feedback-container">
+    <div class="page-header">
+        <h2><i class="fa-solid fa-comment-dots icon-styled"></i> We'd Love Your Feedback</h2>
+        <p class="subtitle">Help us improve your reading experience. Share your thoughts, suggestions, or report any issues.</p>
+    </div>
+
+    <div class="success-message" id="successMessage">
+        <p><i class="fas fa-check-circle"></i> Thank you! Your feedback has been submitted successfully.</p>
+    </div>
+
+    <form id="feedbackform">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Send Feedback</button>
+    </form>
+
+    <section class="faq">
+        <h3>Frequently Asked Questions</h3>
+        
+        <div class="faq-item">
+            <button class="faqbutton">Is this website free to use?</button>
+            <div class="faq-panel">
+                <p>Yes! Readify is completely free to use. All features including book exploration, progress tracking, recommendations, and ambient reading modes are available at no cost.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faqbutton">How do I track my reading progress?</button>
+            <div class="faq-panel">
+                <p>Visit the Progress page and enter your book's total pages and current page number. The tracker will calculate your progress percentage and estimated completion time based on your reading speed.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faqbutton">Can I get personalized book recommendations?</button>
+            <div class="faq-panel">
+                <p>Yes! Head to the Recommender page, select your preferred genre and book length, and our algorithm will suggest books tailored to your preferences.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faqbutton">What is the Flow feature?</button>
+            <div class="faq-panel">
+                <p>Flow is our ambient reading mode that provides background sounds and a distraction-free environment to enhance your reading experience. It also tracks your completed books and reading statistics.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faqbutton">How can I report a bug or issue?</button>
+            <div class="faq-panel">
+                <p>Use the feedback form above to report any bugs or issues. Please include as much detail as possible about what happened and which page you were on.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <p>Email: <a href="mailto:support@readify.com">support@readify.com</a></p>
+        <p>Response time: Within 24-48 hours</p>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Readify</h3>
+            <p>Your ultimate reading companion for discovering, tracking, and enjoying books.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Book Explorer</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+                <li><a href="recommender.html">Recommendations</a></li>
+                <li><a href="flow.html">Reading Flow</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Stay updated with new features and book recommendations</p>
+            <form id="newsform" class="newsletter-form">
+                <input type="email" id="newsletteremail" placeholder="Enter your email" required> 
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Readify. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/reuse.js"></script>
+<script src="js/feedback.js"></script>
+<script src="js/loading.js"></script>
+
+<!--resusable js functions-->
+<script>
+    initMobileMenu();
+    initNewsletterForm();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js')
+    .then(reg => console.log('Service Worker registered', reg))
+    .catch(err => console.error('Service Worker registration failed', err));
+}
+</script>
+
+</body>
+</html>

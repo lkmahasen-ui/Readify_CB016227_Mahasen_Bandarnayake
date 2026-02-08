@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="Get personalized book recommendations based on your preferences. Discover your next great read with Readify.">
+<title>Book Recommender - Readify</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/recommender.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/loading.css">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Readify">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+</head>
+<body>
+    <div class="page-loader active">
+        <div class="spinner">
+            <i class="fas fa-book-open"></i>
+        </div>
+    </div>
+
+    <!--navbar-->
+<header class="navbar">
+    <a href="index.html" style="text-decoration: none;"><h1 class="logo">Readify</h1></a>
+    <button id="menubutton" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <nav id="navmenu">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Book Explorer</a>
+        <a href="progress.html">Reading Progress</a>
+        <a href="recommender.html">Book Recommender</a>
+        <a href="flow.html">Reading Flow</a>
+        <a href="feedback.html">Feedback</a>
+    </nav>
+</header>
+
+<div class="page-header">
+        <h2><i class="fa-solid fa-lightbulb icon-styled"></i> Discover Your Next Read</h2>
+        <p class="subtitle">Answer a few questions and let us find the perfect book for you</p>
+</div>
+
+<!--recommender-container-->
+<main class="recommender-container">
+    
+    <section class="preference-form">
+        <h2 class="section-title">Your Preferences</h2>
+        
+        <div class="form-group">
+            <label for="genreselect">What genre are you in the mood for?</label>
+            <select id="genreselect" aria-label="Select preferred genre">
+                <option value="">Select a genre</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lengthselect">How long should the book be?</label>
+            <select id="lengthselect" aria-label="Select book length">
+                <option value="">Any Length</option>
+                <option value="short">Short (< 200 pages)</option>
+                <option value="medium">Medium (200-400 pages)</option>
+                <option value="long">Long (> 400 pages)</option>
+            </select>
+        </div>
+        
+        <div class="button-group">
+            <button id="pickbutton" class="pick-btn">Pick a Book for Me
+            </button>
+            <button id="resetbutton" class="btn-reset">
+                <i class="fas fa-rotate-right"></i> Reset
+            </button>
+            
+            
+            <section class="reading-list-section">
+                <h3 class="section-title">My Reading List</h3>
+                <div id="readinglist" class="reading-list-container">
+                    <p class="empty-message">Your reading list is empty. Save recommendations to see them here</p>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section id="recommendation" class="recommendation-section" style="display: none;">
+        
+    </section>
+</main>
+
+<!--footer-->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Readify</h3>
+            <p>Your ultimate reading companion for discovering, tracking, and enjoying books.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Book Explorer</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+                <li><a href="recommender.html">Recommendations</a></li>
+                <li><a href="flow.html">Reading Flow</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Stay updated with new features and book recommendations</p>
+            <form id="newsform" class="newsletter-form">
+                <input type="email" id="newsletteremail" placeholder="Enter your email" required> 
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Readify. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/reuse.js"></script>
+<script src="js/recommender.js"></script>
+<script src="js/loading.js"></script>
+<!--calling reusable functions-->
+<script>  
+    initMobileMenu();
+    initNewsletterForm();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js')
+        .then(reg => console.log('Service Worker registered', reg))
+        .catch(err => console.error('Service Worker registration failed', err));
+}
+</script>
+</body>
+</html>

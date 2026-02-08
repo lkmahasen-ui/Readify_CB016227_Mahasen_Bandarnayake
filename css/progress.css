@@ -1,0 +1,521 @@
+:root{
+    --primary: #764134;
+    --accent: #AD8350;
+    --bg-color: #FFFFFF;
+    --text-dark: #000000;
+    --text-light: #764134;
+    --white: #FFFFFF;
+    --neutral: #C9CBCF;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --radius: 8px;
+    --transition: all 0.3s ease;
+    color-scheme: light;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, rgba(173, 131, 80, 0.05), rgba(118, 65, 52, 0.05));
+    color: var(--text-dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color-scheme: light;
+}
+
+h1, h2, h3{
+    font-family: 'Libre Baskerville', serif;
+}
+
+/* Icon Styling */
+
+
+/* Progress Container */
+.progress-container{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem 1.5rem;
+}
+
+/* Page Header - Consistent across all pages */
+.page-header{
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    background: url('/Readify-webapp/assets/images/Background/tracker.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--white);
+    border-bottom: 3px solid black;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+} 
+
+.page-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.page-header h2{
+    font-size: 2.5rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header .subtitle{
+    font-size: 1.1rem;
+    color: var(--neutral);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+.page-header .icon-styled {
+    color: var(--white);
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* section title */
+.section-title{
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* tracker section */
+.tracker{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    border: 2px solid var(--neutral);
+}
+
+/* input group */
+.input-group{
+    margin-bottom: 1.5rem;
+}
+
+.input-group label{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.input-group input{
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--neutral);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+    outline: none;
+    background-color: var(--white);
+}
+
+.input-group input[type="number"] {
+    padding-right: 50px;
+}
+
+.input-group input:focus{
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(173, 131, 80, 0.1);
+}
+
+.input-group input::placeholder{
+    color: #999;
+}
+
+/* button group */
+.button-group{
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-calculate,.btn-reset{
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-calculate{
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-calculate:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-reset{
+    background: var(--neutral);
+    color: var(--text-dark);
+}
+
+.btn-reset:hover{
+    background: #b0b3b7;
+    transform: translateY(-2px);
+}
+
+.btn-calculate:active, .btn-reset:active{
+    transform: translateY(0);
+}
+
+/*Style the increment and decrement buttons*/
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Custom increment and decrement buttons */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.stepper-buttons {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stepper-btn {
+    width: 28px;
+    height: 22px;
+    border: 1px solid var(--neutral);
+    background: var(--white);
+    color: var(--primary);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    border-radius: 3px;
+    transition: var(--transition);
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1;
+}
+
+.stepper-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.stepper-btn:active {
+    transform: scale(0.95);
+}
+
+/* Progress display section */
+.progress-display{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 3rem;
+    border: 2px solid var(--neutral);
+}
+
+/* Progress bar */
+.progress-bar-container{
+    margin-bottom: 3rem;
+}
+
+.progress-bar{
+    width: 100%;
+    height: 40px;
+    background-color: var(--neutral);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#progressfill{
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    width: 0;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+#progresspercentage{
+    color: var(--white);
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats grid */
+.stats-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box{
+    background: linear-gradient(135deg, rgba(173, 131, 80, 0.05), rgba(118, 65, 52, 0.05));
+    border: 2px solid var(--neutral);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.stat-box:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon{
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--white);
+    flex-shrink: 0;
+}
+
+.stat-content{
+    flex: 1;
+}
+
+.stat-label{
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+#resulttext{
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 1rem;
+    background: rgba(173, 131, 80, 0.1);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--primary);
+}
+
+#resulttext:empty{
+    display: none;
+}
+
+/* Reading Tips Section */
+.reading-tips{
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--neutral);
+}
+
+.tips-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.tip-card{
+    background: linear-gradient(135deg, rgba(173, 131, 80, 0.05), rgba(118, 65, 52, 0.05));
+    border: 2px solid var(--neutral);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.tip-card:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--accent);
+}
+
+.tip-card i{
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tip-card p{
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px){
+    .progress-container{
+        padding: 1.5rem 1rem;
+    }
+
+    .page-header h2{
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .page-header .subtitle{
+        font-size: 1rem;
+    }
+
+    .tracker, .progress-display, .reading-tips{
+        padding: 1.5rem;
+    }
+
+    .section-title{
+        font-size: 1.3rem;
+    }
+
+    .stats-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .tips-grid{
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .button-group{
+        flex-direction: column;
+    }
+
+    .stat-value{
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px){
+    .progress-container{
+        padding: 1rem 0.75rem;
+    }
+
+    .tracker,.progress-display,.reading-tips{
+        padding: 1.25rem;
+    }
+
+    .section-title{
+        font-size: 1.2rem;
+    }
+
+    .input-group input{
+        padding: 0.875rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-calculate, .btn-reset{
+        padding: 0.875rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .progress-bar{
+        height: 35px;
+    }
+
+    #progresspercentage{
+        font-size: 0.9rem;
+    }
+
+    .stat-icon{
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .stat-value{
+        font-size: 1.2rem;
+    }
+
+    .tips-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .tip-card i{
+        font-size: 1.75rem;
+    }
+
+    .tip-card p{
+        font-size: 0.9rem;
+    }
+}
+

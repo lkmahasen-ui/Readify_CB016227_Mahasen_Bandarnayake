@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="Discover and explore thousands of books. Search by genre, read reviews, and find your next favorite read with Readify Book Explorer.">
+<meta name="keywords" content="books, book explorer, reading, book reviews, genres, literature">
+<meta name="author" content="Readify">
+
+<meta property="og:title" content="Book Explorer - Readify">
+<meta property="og:description" content="Discover and explore thousands of books. Find your next favorite read.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://readify.com/explorer.html">
+<title>Book Explorer - Readify</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/explorer.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/loading.css">
+
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Readify">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+</head>
+<body>
+    <div class="page-loader active">
+        <div class="spinner">
+            <i class="fas fa-book-open"></i>
+        </div>
+    </div>
+
+    <!--navbar-->
+<header class="navbar">
+    <a href="index.html" style="text-decoration: none;"><h1 class="logo">Readify</h1></a>
+    <button id="menubutton" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <nav id="navmenu">
+        <a href="index.html">Home</a>
+        <a href="explorer.html" class="active">Book Explorer</a>
+        <a href="progress.html">Reading Progress</a>
+        <a href="recommender.html">Book Recommender</a>
+        <a href="flow.html">Reading Flow</a>
+        <a href="feedback.html">Feedback</a>
+    </nav>
+</header>
+
+<div class="page-header">
+    <h2><i class="fa-solid fa-search icon-styled"></i> Discover Your Next Great Read</h2>
+    <p class="subtitle">Explore thousands of books across all genres</p>
+</div>
+
+<div class="explorer-container">
+    <!-- Search and filter section -->
+    <section class="filters" role="search" aria-label="Book search and filter">
+        <div class="search-wrapper">
+            <i class="fa-solid fa-search search-icon"></i>
+            <input id="searchinput" type="search" placeholder="Search by title, author, or keyword..." aria-label="Search for books by title or author">
+        </div>
+
+
+        <div class="filter-group">
+            <select id="genrefilter" aria-label="Filter books by genre">
+                <option value="">All Books</option>
+                <option value="biography">Biography</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="fiction">Fiction</option>
+                <option value="history">History</option>
+                <option value="horror">Horror</option>
+                <option value="mystery">Mystery</option>
+                <option value="non-fiction">Non-Fiction</option>
+                <option value="romance">Romance</option>
+                <option value="science fiction">Science Fiction</option>
+            </select>
+
+            <select id="sortfilter" aria-label="Sort books">
+                <option value="relevance">Sort: Relevance</option>
+                <option value="title-asc">Sort: Title (A-Z)</option>
+                <option value="title-desc">Sort: Title (Z-A)</option>
+                <option value="author-asc">Sort: Author (A-Z)</option>
+                <option value="author-desc">Sort: Author (Z-A)</option>
+                <option value="rating-high">Sort: Highest Rated</option>
+                <option value="rating-low">Sort: Lowest Rated</option>
+            </select>
+
+        </div>
+
+    </section>
+
+    <!-- results -->
+    <div class="results-info">
+        <span id="resultscount">Showing all books</span>
+    </div>
+
+    <!-- books grid -->
+    <section id="bookgrid" class="grid" role="main" aria-live="polite" aria-label="Book results">
+
+        <!-- Empty State -->
+        <div class="empty-state" style="display:none;">
+            <i class="fa-solid fa-book-open"></i>
+            <h2>No Books Found</h2>
+            <p>Try adjusting your search or filters</p>
+            <button id="clearfiltersempty" class="btn-primary">
+                <i class="fa-solid fa-sync-alt"></i> Reset Filters
+            </button>
+        </div>
+    </section>
+
+    <!-- pagination (js) -->
+    <div class="pagination" id="pagination"></div>
+
+</div>
+
+<!-- modal -->
+<div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+        <button id="closemodal"><i class="fas fa-times"></i></button>
+
+        <div class="modal-header">
+            <img id="modalcover" class="modal-book-cover" alt="">
+            <div>
+                <h2 id="modaltitle"></h2>
+                <p id="modalauthor"></p>
+                <div id="modalgenres" class="modal-genres"></div>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <h3>Synopsis</h3>
+            <p id="modalsynopsis"></p>
+
+            <!--Series-->
+
+            <div id="modalseries" class="modal-series" style="display: none;">
+                <h3>Series Information</h3>
+                <div id="modalprequels" class="series-section" style="display: none;">
+                    <h4><i class="fas fa-arrow-left"></i> Prequels</h4>
+                    <ul id="prequelslist"></ul>
+                </div>
+                <div id="modalsequels" class="series-section" style="display: none;">
+                    <h4><i class="fas fa-arrow-right"></i> Sequels</h4>
+                    <ul id="sequelslist"></ul>
+                </div>
+            </div>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Readify</h3>
+            <p>Your ultimate reading companion for discovering, tracking, and enjoying books.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Book Explorer</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+                <li><a href="recommender.html">Recommendations</a></li>
+                <li><a href="flow.html">Reading Flow</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Stay updated with new features and book recommendations</p>
+            <form id="newsform" class="newsletter-form">
+                <input type="email" id="newsletteremail" placeholder="Enter your email" required> 
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Readify. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/reuse.js"></script>
+<script src="js/explorer.js"></script>
+<script src="js/loading.js"></script>
+
+<!--resusable js functions-->
+<script>
+    initMobileMenu();
+    initNewsletterForm();
+</script>
+
+<!--serviceworker-->
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('js/service-worker.js')
+    .then(reg => console.log('Service Worker registered', reg))
+    .catch(err => console.error('Service Worker registration failed', err));
+}
+</script>
+
+</body>
+</html>

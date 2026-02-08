@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="Cozy reading mode with ambient sounds to enhance your reading experience. Track completed books with Readify.">
+<title>Reading Flow - Readify</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/flow.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/loading.css">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Readify">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+</head>
+<body>
+    <div class="page-loader active">
+        <div class="spinner">
+            <i class="fas fa-book-open"></i>
+        </div>
+    </div>
+<header class="navbar">
+    <a href="index.html" style="text-decoration: none;"><h1 class="logo">Readify</h1></a>
+    <button id="menubutton" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <nav id="navmenu">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Book Explorer</a>
+        <a href="progress.html">Reading Progress</a>
+        <a href="recommender.html">Book Recommender</a>
+        <a href="flow.html">Reading Flow</a>
+        <a href="feedback.html">Feedback</a>
+    </nav>
+</header>
+
+<main class="flow-container">
+    <div class="page-header">
+        <h2><i class="fa-solid fa-headphones icon-styled"></i> Cozy Reading Mode</h2>
+        <p class="subtitle">Create the perfect atmosphere for your reading session</p>
+    </div>
+
+    <section class="ambient-section">
+
+        <div class="sound-controls">
+            <div class="music-selector">
+                <label for="musicselect"><i class="fas fa-music"></i> Select Music:</label>
+                <select id="musicselect">
+                    <option value="">-- Choose a Track --</option>
+                    <option value="assets/audio/Magical-Moments-chosiccom.mp3">Music 1</option>
+                    <option value="assets/audio/Morning-Routine-Lofi-Study-Music.mp3">Music 2</option>
+                    <option value="assets/audio/RELAX-LOFI-chosiccom.mp3">Music 3</option>
+                </select>
+            </div>
+        </div>
+
+        <audio id="backgroundmusic" loop></audio>
+
+        <div class="music-controls">
+            <button id="playmusic" class="sound-btn play-btn">
+                <i class="fas fa-play"></i>
+                <span class="btn-text">Play</span>
+            </button>
+            <button id="pausemusic" class="sound-btn pause-btn">
+                <i class="fas fa-pause"></i>
+                <span class="btn-text">Pause</span>
+            </button>
+            <button id="stopmusic" class="sound-btn stop-btn">
+                <i class="fas fa-stop"></i>
+                <span class="btn-text">Stop</span>
+            </button>
+        </div>
+
+        <div class="volume-control">
+            <i class="fas fa-volume-down"></i>
+            <input type="range" id="volumeslider" min="0" max="100" value="50">
+            <i class="fas fa-volume-up"></i>
+            
+        </div>
+
+        <div class="sound-info">
+            <p><i class="fas fa-cloud-rain icon-styled"></i> Enjoy relaxing ambient sounds to enhance your reading experience</p>
+        </div>
+    </section>
+
+    <section class="completed-section">
+        <div class="completed-header">
+            <h2 class="section-title"><i class="fas fa-book icon-styled"></i> Your Reading Journey</h2>
+            <p class="section-subtitle">Books you've completed</p>
+        </div>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-book-open icon-styled icon-light"></i></div>
+                <div class="stat-value" id="totalbooks">0</div>
+                <div class="stat-label">Books Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-file-alt icon-styled icon-light"></i></div>
+                <div class="stat-value" id="totalpages">0</div>
+                <div class="stat-label">Pages Read</div>
+            </div>
+        </div>
+
+        <ul id="completedbooks" class="completed-books-list">
+            <!-- Completed books will be dynamically added here -->
+            <li class="empty-message">No completed books yet. Start reading!</li>
+        </ul>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Readify</h3>
+            <p>Your ultimate reading companion for discovering, tracking, and enjoying books.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Book Explorer</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+                <li><a href="recommender.html">Recommendations</a></li>
+                <li><a href="flow.html">Reading Flow</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Stay updated with new features and book recommendations</p>
+            <form id="newsform" class="newsletter-form">
+                <input type="email" id="newsletteremail" placeholder="Enter your email" required> 
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Readify. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/reuse.js"></script>
+<script src="js/flow.js"></script>
+<script src="js/loading.js"></script>
+<script>
+    initMobileMenu();
+    initNewsletterForm();
+</script>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('js/service-worker.js')
+            .then(reg => console.log('Service Worker registered', reg))
+            .catch(err => console.error('Service Worker registration failed', err));
+    }
+</script>
+</body>
+</html>

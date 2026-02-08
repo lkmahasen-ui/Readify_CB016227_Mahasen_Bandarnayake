@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="description" content="Track your reading progress and set goals. Calculate completion time and monitor your reading journey with Readify.">
+<meta name="keywords" content="reading tracker, progress tracker, reading goals, book progress">
+<meta name="author" content="Readify">
+
+<title>Progress Tracker - Readify</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/progress.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/loading.css">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
+<link rel="shortcut icon" href="assets/images/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Readify">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
+
+</head>
+<body>
+    <div class="page-loader active">
+        <div class="spinner">
+            <i class="fas fa-book-open"></i>
+        </div>
+    </div>
+
+<!--navbar-->
+<header class="navbar">
+    <a href="index.html" style="text-decoration: none;"><h1 class="logo">Readify</h1></a>
+    <button id="menubutton" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+    <nav id="navmenu">
+        <a href="index.html">Home</a>
+        <a href="explorer.html">Book Explorer</a>
+        <a href="progress.html">Reading Progress</a>
+        <a href="recommender.html">Book Recommender</a>
+        <a href="flow.html">Reading Flow</a>
+        <a href="feedback.html">Feedback</a>
+    </nav>
+</header>
+
+<div class="page-header">
+    <h2><i class="fa-solid fa-chart-line icon-styled"></i> Track Your Reading Progress</h2>
+    <p class="subtitle">Monitor your reading journey and set achievable goals</p>
+</div>
+
+<!--progress container-->
+<div class="progress-container">
+    <section class="tracker">
+        <h3 class="section-title">Book Details</h3>
+        
+        <div class="input-group">
+            <label for="booktitle">
+                <i class="fas fa-book icon-styled"></i> Book Title
+            </label>
+            <input id="booktitle" type="text" placeholder="Enter book title">
+        </div>
+
+        <div class="input-group">
+            <label for="totalpages">
+                <i class="fas fa-file icon-styled"></i> Total Pages
+            </label>
+            <div class="input-wrapper">
+                <input id="totalpages" type="number" placeholder="e.g., 300" min="1">
+                <div class="stepper-buttons">
+                    <button type="button" class="stepper-btn stepper-up" data-input="totalpages"><i class="fas fa-chevron-up"></i></button>
+                    <button type="button" class="stepper-btn stepper-down" data-input="totalpages"><i class="fas fa-chevron-down"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="pagesread">
+                <i class="fas fa-bookmark icon-styled"></i>Pages Read
+            </label>
+            <div class="input-wrapper">
+                <input id="pagesread" type="number" placeholder="e.g., 150" min="0">
+                <div class="stepper-buttons">
+                    <button type="button" class="stepper-btn stepper-up" data-input="pagesread"><i class="fas fa-chevron-up"></i></button>
+                    <button type="button" class="stepper-btn stepper-down" data-input="pagesread"><i class="fas fa-chevron-down"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="speed">
+                <i class="fas fa-gauge-high icon-styled"></i> Reading Speed (pages/day)
+            </label>
+            <div class="input-wrapper">
+                <input id="speed" type="number" placeholder="e.g., 30" min="1">
+                <div class="stepper-buttons">
+                    <button type="button" class="stepper-btn stepper-up" data-input="speed"><i class="fas fa-chevron-up"></i></button>
+                    <button type="button" class="stepper-btn stepper-down" data-input="speed"><i class="fas fa-chevron-down"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" id="calculatebutton" class="btn-calculate">
+                <i class="fas fa-calculator"></i> Calculate Progress
+            </button>
+            <button type="button" id="resetbutton" class="btn-reset">
+                <i class="fas fa-rotate-right"></i> Reset
+            </button>
+        </div>
+    </section>
+
+    <section class="progress-display">
+        <h3 class="section-title">Your Progress</h3>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div id="progressfill">
+                    <span id="progresspercentage">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-icon">
+                    <i class="fas fa-book-open icon-styled"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Pages Remaining</div>
+                    <div class="stat-value" id="pagesremaining">-</div>
+                </div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-days icon-styled"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Days to Complete</div>
+                    <div class="stat-value" id="daystocomplete">-</div>
+                </div>
+            </div>
+            
+            <div class="stat-box">
+                <div class="stat-icon">
+                    <i class="fas fa-flag-checkered icon-styled"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-label">Completion Date</div>
+                    <div class="stat-value" id="completiondate">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="resulttext"></div>
+    </section>
+
+    <section class="reading-tips">
+        <h3 class="section-title"><i class="fas fa-lightbulb icon-styled"></i> Reading Tips</h3>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <i class="fa-solid fa-clock"></i>
+                <p>Set aside dedicated reading time each day</p>
+            </div>
+            <div class="tip-card">
+                <i class="fa-solid fa-bullseye"></i>
+                <p>Start with achievable daily page goals</p>
+            </div>
+            <div class="tip-card">
+                <i class="fa-solid fa-mug-hot"></i>
+                <p>Create a comfortable reading environment</p>
+            </div>
+            <div class="tip-card">
+                <i class="fa-solid fa-trophy"></i>
+                <p>Celebrate milestones along the way</p>
+            </div>
+            <div class="tip-card">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <p>Keep a reading journal to track insights</p>
+            </div>
+            <div class="tip-card">
+                <i class="fa-solid fa-moon"></i>
+                <p>Read before bed to improve sleep quality</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!--footer-->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Readify</h3>
+            <p>Your ultimate reading companion for discovering, tracking, and enjoying books.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explorer.html">Book Explorer</a></li>
+                <li><a href="progress.html">Progress Tracker</a></li>
+<li><a href="recommender.html">Recommendations</a></li>
+                <li><a href="flow.html">Reading Flow</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p>Stay updated with new features and book recommendations</p>
+            <form id="newsform" class="newsletter-form">
+                <input type="email" id="newsletteremail" placeholder="Enter your email" required> 
+                <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2026 Readify. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="js/reuse.js"></script>
+<script src="js/tracker.js"></script>
+<script src="js/loading.js"></script>
+
+<!--calling reusable functions-->
+<script>
+    initMobileMenu();
+    initNewsletterForm();
+</script>
+
+<!--service worker registration-->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('js/service-worker.js')
+            .then(reg => console.log('Service Worker registered', reg))
+            .catch(err => console.error('Service Worker registration failed', err));
+    }
+</script>
+
+</body>
+</html>
