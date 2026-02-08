@@ -51,7 +51,7 @@ h1, h2, h3, h4 {
         max-width: 100vw;
     text-align: center;
     padding: 3rem 2rem 2rem;
-    background: var(--text-color) url('/Readify-webapp/assets/images/Background/feedback.webp');
+    background: var(--text-color) url('../assets/images/Background/feedback.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
