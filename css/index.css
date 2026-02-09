@@ -204,7 +204,7 @@ h1, h2, h3, h4{
 }
 
 .feature-link{
-    color: var(--accent);
+    color: #4B2E13;
     font-weight: 600;
     text-decoration: none;
     display: inline-flex;
