@@ -106,11 +106,10 @@ h1, h2, h3, h4 {
     margin-bottom: 2rem;
 }
 
-.search-wrapper{
-    position: relative;
-    flex: 1 1 100%;
-    max-width: 100%;
-    min-width: 280px;
+.search-wrapper, #searchinput, .newsletter-form {
+  display: initial;
+  visibility: visible;
+  opacity: 1;
 }
 
 .search-icon{
